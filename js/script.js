@@ -1,3 +1,46 @@
+/*------------------Toggle Navbar--------------------*/
+const toggler = document.querySelector(".nav-toggler");
+toggler.addEventListener("click", (e) => {
+    hideSection();
+    toggleNavBar();
+    document.body.classList.toggle("hide-scrolling")
+})
+
+function hideSection() {
+    document.querySelector("section.active").classList.toggle("fade-out")
+}
+
+function toggleNavBar() {
+    document.querySelector(".header").classList.toggle("active");
+}
+
+
+
+
+/*------------------------Active Section---------------------*/
+ document.addEventListener('click', (e) => {
+    if (e.target.classList.contains("link-item") && e.target.hash != "") {
+        const hash = e.target.hash;
+        if (e.target.classList.contains('nav-item')) {
+            toggleNavBar();
+        }
+        // else {
+        //     hideSection();
+        //     document.body.classList.remove('hide-scrolling')
+        // }
+        setTimeout(() => {
+            document.querySelector('section.active')
+            .classList.remove('active','fade-out');
+            document.querySelector(e.target.hash).classList.add('active');
+            window.scroll(0,0);
+            document.body.classList.remove('hide-scrolling');
+        })
+    }
+ })
+
+
+
+
 // Toggling the about tabs
 const tabsContainer = document.querySelector(".about-tabs");
 const aboutText  = document.querySelector(".about-text")
@@ -51,5 +94,4 @@ function portFolioItemDetails(portfolioItem) {
 document.querySelector(".pp-close").addEventListener('click', portFolioItemToggle)
 
 
-/*------------------Toggle Navbar--------------------*/
  
