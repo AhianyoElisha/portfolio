@@ -1,3 +1,14 @@
+window.addEventListener('load', () => {
+    document.querySelector('.main').classList.remove('hidden')
+    document.querySelector('.home-section').classList.add('active')
+    /*-----------------Page Loader-------------------*/
+    document.querySelector('.page-loader').classList.add('fade-out') 
+    setTimeout(() => {
+        document.querySelector('.page-loader').style.display = 'none';
+    }, 600);
+})
+
+
 /*------------------Toggle Navbar--------------------*/
 const toggler = document.querySelector(".nav-toggler");
 toggler.addEventListener("click", (e) => {
@@ -18,8 +29,11 @@ function toggleNavBar() {
 
 
 /*------------------------Active Section---------------------*/
- document.addEventListener('click', (e) => {
+ window.addEventListener('click', (e) => {
     if (e.target.classList.contains("link-item") && e.target.hash != "") {
+        // console.log(window.location.hash)
+        toggler.classList.add('hide')
+        document.querySelector('.overlay').classList.add('active')
         const hash = e.target.hash;
         if (e.target.classList.contains('nav-item')) {
             toggleNavBar();
@@ -33,11 +47,16 @@ function toggleNavBar() {
             .classList.remove('active','fade-out');
             document.querySelector(e.target.hash).classList.add('active');
             window.scroll(0,0);
+            document.querySelector('.overlay').classList.remove('active')
+            toggler.classList.remove('hide')
             document.body.classList.remove('hide-scrolling');
-        })
+        }, 500)
     }
  })
 
+ window.addEventListener('popstate', (e) => {
+    console.log(document.location.hash);
+ })
 
 
 

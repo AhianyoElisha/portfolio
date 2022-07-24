@@ -134,6 +134,106 @@ section.fade-out {
         opacity: 1;
     }
 }
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(0.5);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceTop {
+    0%, 100% {
+        transform: translateY(-50px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Background Circles */
+.bg-circles {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    width: calc(100% - 30px);
+    max-width: 1200px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.bg-circles div {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.bg-circles .circle-1{
+    width: 60px;
+    height: 60px;
+    background-color: var(--blue);
+    top: 10%;
+    left: 5%;
+    opacity: 0.3;
+    animation: zoomInOut 8s linear infinite;
+}
+
+.bg-circles .circle-2{
+    width: 80px;
+    height: 80px;
+    background-color: var(--main-color);
+    top: 50%;
+    left: 30%;
+    opacity: 0.4;
+    animation: bounceTop 5s ease-in-out infinite;
+}
+
+.bg-circles .circle-3{
+    width: 100px;
+    height: 100px;
+    background-color: var(--white);
+    top: 40%;
+    right: -60px;
+    opacity: 0.4;
+}
+
+.bg-circles .circle-4{
+    width: 50px;
+    height: 50px;
+    background-color: var(--orange);
+    top: 80%;
+    left: -30px;
+    opacity: 0.4;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: 200;
+    visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
+}
  /* Custom Scroll Bar */
 ::-webkit-scrollbar {
     width: 5px;;
@@ -218,8 +318,14 @@ header {
     outline: none;
     margin: 0 15px;
     z-index: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
+
+.header .nav-toggler.hide {
+    opacity: 0;
+    transition: none;
+}
 .flex-end {
     justify-content: flex-end;
 }
@@ -763,4 +869,136 @@ Contact Section
 .contact-info-item .social-links a:hover {
     color: var(--white);
     background-color: var(--main-color);
+}
+
+
+/* Page Loader */
+.page-loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--white-alpha-25);
+    backdrop-filter: var(--backdrop-filter-blur);
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:  opacity 0.6s ease;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+}
+
+.page-loader div {
+    border: 2px solid transparent;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    animation: spin 1s linear infinite;
+}
+
+.page-loader div:nth-child(1) {
+    height: 60px;
+    width: 60px;
+    border-color: var(--main-color);
+}
+
+.page-loader div:nth-child(2) {
+    height: 45px;
+    width: 45px;
+    border-color: var(--blue);
+    animation-duration: 1.2s;
+}
+
+
+.page-loader div:nth-child(3) {
+    height: 30px;
+    width: 30px;
+    border-color: var(--orange);
+    animation-duration: 2s;
+}
+
+
+
+
+
+/* Responsive */
+@media(max-width:991px) {
+    .container {
+        padding: 0;
+    }
+    .home-img, .home-text {
+        width: 100%;
+    }
+    .home-text {
+        text-align: center;
+    }
+
+    .home-img {
+        order: -1;
+    }
+
+    .home-img .img-box {
+        max-width: 300px;
+    }
+    .home-text .btn {
+        margin: 0 7px 15px;
+    }
+
+    .portfolio-item {
+        width: calc(50% - 30px);
+    }
+}
+@media(max-width:767px) {
+    body {
+        font-size: 13px;
+    }
+    .contact-info, 
+    .contact-form, 
+    .about-text,
+    .about-img {
+        width: 100%;
+    }
+
+    .contact-info {
+        order: -1;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .contact-info-item {
+        padding: 0;
+    }
+    
+    .about-text {
+        margin-top: 30px;
+    }
+
+    .portfolio-item {
+        width: calc(100% - 30px);
+    }
+    .pp-inner {
+        padding: 30px 15px;
+    }
+
+    .pp-header h3 {
+        font-size: 18px;
+    }
+}
+@media(max-width:575px) {
+    .section-title h2,
+    .home-text h1 {
+        font-size: 30px;
+    }
+    .home-text h2 {
+        font-size: 18px;
+    }
+    .header .nav-inner ul a {
+        font-size: 30px;
+    }
 }
