@@ -956,7 +956,7 @@ Contact Section
 }
 @media(max-width:767px) {
     body {
-        font-size: 13px;
+        font-size: 15px;
     }
     .contact-info, 
     .contact-form, 
