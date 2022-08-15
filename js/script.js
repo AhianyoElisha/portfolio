@@ -57,7 +57,12 @@ function toggleNavBar() {
  window.addEventListener('popstate', (e) => {
     toggler.classList.add('hide')
     document.querySelector('.overlay').classList.add('active')
-    const hash = document.location.hash;
+    var hash = document.location.hash;
+    if (hash == "") hash = '#home'
+    if (document.querySelector('.header').classList.contains('active')) {
+        document.querySelector('.header').classList.remove('active')
+    }
+    console.log(hash);
     setTimeout(() => {
         document.querySelector('section.active')
         .classList.remove('active','fade-out');
